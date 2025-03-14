@@ -2,6 +2,8 @@ package kr.gsm.board.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 // Board(Object)---mapping-->DB Table
 // ORM
 // Spring JPA API
@@ -11,9 +13,11 @@ public class Board { // 번호(PK), 제목, 내용, 작성자....
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // null
 
-    @Column(name = "title", length=500, nullable = false, unique = true )
+    @Column(name = "title", length=500, nullable = false)
     private String title; // varchar(500)
 
     private String content;
-    private String name; // name
+    private String writer; // name
+    private LocalDateTime createdAt;
+    private int count;
 }
