@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 public class Board { // 번호(PK), 제목, 내용, 작성자....
     @Id // PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long num; // null
+    private Long id; // null
 
     @Column(name = "title", length=500, nullable = false, unique = true )
     private String title; // varchar(500)
