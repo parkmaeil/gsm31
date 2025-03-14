@@ -1,6 +1,10 @@
 package kr.gsm.board.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -8,6 +12,10 @@ import java.time.LocalDateTime;
 // ORM
 // Spring JPA API
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Board { // 번호(PK), 제목, 내용, 작성자....
     @Id // PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)
