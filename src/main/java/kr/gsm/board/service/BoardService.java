@@ -1,5 +1,6 @@
 package kr.gsm.board.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import kr.gsm.board.entity.Board;
 import kr.gsm.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +28,13 @@ public class BoardService { // --> new BoardService() : Spring Container(DI, AOP
         return boardRepository.findById(id); // select SQL ~
     }
 
-    public Board save(Long id, Board reqBoard){
-         Optional<Board> optional=boardRepository.findById(id);
-         if(optional.isPresent()){
-             // 수정 ?
-             Board board=optional.get();
-             board.setTitle(reqBoard.getTitle());
-             board.setContent(reqBoard.getContent());
-             return boardRepository.save(board); // update
-         }
-         return null;
+    public Board save(Long id, Board reqBoard) {
+        return boardRepository.findById(id)
+                .map(board -> {
+                    board.setTitle(reqBoard.getTitle());
+                    board.setContent(reqBoard.getContent());
+                    return boardRepository.save(board);
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Board not found with id: " + id));
     }
 }
