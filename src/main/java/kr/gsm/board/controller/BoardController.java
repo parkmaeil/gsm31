@@ -28,4 +28,6 @@ public class BoardController { // 객체생성(new BoardController())
     public Board register(@RequestBody Board board){
        return boardService.save(board);
     }
+
+    
 }
