@@ -38,10 +38,13 @@ public class BoardService { // --> new BoardService() : Spring Container(DI, AOP
                 .orElseThrow(() -> new EntityNotFoundException("Board not found with id: " + id));
     }
 
-    public Board deleteById(Long id){
-        return boardRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Board not found with id: " + id)
-        );
+    public void deleteById(Long id){
+       Optional<Board> optional=boardRepository.findById(id);
+       if(optional.isPresent()){
+           boardRepository.deleteById(id);
+       }else{
+           new EntityNotFoundException("Board not found with id: " + id);
+       }
     }
-    
+
 }
