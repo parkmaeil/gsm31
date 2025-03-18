@@ -12,7 +12,7 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
     // findAll() --> select * from Board
     // save(Board board)
     // findById(Long id) -> select * from Board where id=?
-
+    // deleteById()
 }
 // public class EntityManager implements BoardRepository{
 
