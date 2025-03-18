@@ -52,6 +52,12 @@ public class BoardController { // 객체생성(new BoardController())
         return new ResponseEntity<>(updatedBoard, HttpStatus.OK);
     }
 
+    // DELETE : http://localhost:8081/api/board/3
+    public ResponseEntity<?> remove(@PathVariable Long id){
+        boardService.deleteById(id);
+        return new ResponseEntity<>("삭제성공", HttpStatus.OK);
+    }
+
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<String> exceptionHandler(EntityNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
