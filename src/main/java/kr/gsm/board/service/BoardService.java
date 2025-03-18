@@ -22,11 +22,20 @@ public class BoardService { // --> new BoardService() : Spring Container(DI, AOP
         return boardRepository.save(board); // insert SQL~
     }
 
-    public Board findById(Long id){
-        Optional<Board> optional=boardRepository.findById(id);
-        if(optional.isPresent()){
-            return optional.get();
-        }
-        return null;
+    public Optional<Board> findById(Long id){
+        // 추가적인 작업~~
+        return boardRepository.findById(id); // select SQL ~
+    }
+
+    public Board save(Long id, Board reqBoard){
+         Optional<Board> optional=boardRepository.findById(id);
+         if(optional.isPresent()){
+             // 수정 ?
+             Board board=optional.get();
+             board.setTitle(reqBoard.getTitle());
+             board.setContent(reqBoard.getContent());
+             return boardRepository.save(board); // update
+         }
+         return null;
     }
 }

@@ -3,12 +3,15 @@ package kr.gsm.board.controller;
 import kr.gsm.board.entity.Board;
 import kr.gsm.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 //@Controller  // View를 넘겨주는
 @RestController // JSON
@@ -29,5 +32,13 @@ public class BoardController { // 객체생성(new BoardController())
        return boardService.save(board);
     }
 
-    
+    // GET : http://localhost:8081/api/board/5
+    @GetMapping("/board/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id){
+        Optional<Board> optional=boardService.findById(id);
+        if(optional.isPresent()){
+            return new ResponseEntity<>(optional.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>("데이터가 없습니다.", HttpStatus.NOT_FOUND);
+    }
 }
