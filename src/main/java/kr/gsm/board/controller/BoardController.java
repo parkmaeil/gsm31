@@ -53,6 +53,7 @@ public class BoardController { // 객체생성(new BoardController())
     }
 
     // DELETE : http://localhost:8081/api/board/3
+    @DeleteMapping("/board/{id}")
     public ResponseEntity<?> remove(@PathVariable Long id){
         boardService.deleteById(id);
         return new ResponseEntity<>("삭제성공", HttpStatus.OK);
