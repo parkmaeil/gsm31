@@ -43,7 +43,7 @@ public class BoardService { // --> new BoardService() : Spring Container(DI, AOP
        if(optional.isPresent()){
            boardRepository.deleteById(id);
        }else{
-           new EntityNotFoundException("Board not found with id: " + id);
+           throw new EntityNotFoundException("Board not found with id: " + id);
        }
     }
 
