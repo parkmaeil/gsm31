@@ -12,20 +12,23 @@ import java.time.LocalDateTime;
 // ORM
 // Spring JPA API
 @Entity
-@Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Setter
 public class Board { // 번호(PK), 제목, 내용, 작성자....
-    @Id // PK
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // null
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id; //null
+  @Column(length = 100, nullable = false)
+  private String title; // varchar(255)
 
-    @Column(name = "title", length=500, nullable = false)
-    private String title; // varchar(500)
+  private String content;
+  private String writer;
+  private LocalDateTime createdAt; //created_at
 
-    private String content;
-    private String writer; // name
-    private LocalDateTime createdAt;
-    private int count;
+  @PrePersist
+  protected void onCreate(){
+    this.createdAt=LocalDateTime.now();
+  }
+  private int count;
+
 }
