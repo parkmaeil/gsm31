@@ -1,5 +1,6 @@
 package kr.gsm.board.controller;
 
+import jakarta.persistence.EntityNotFoundException;
 import kr.gsm.board.entity.Board;
 import kr.gsm.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,19 @@ public class BoardController { // 객체생성(new BoardController())
             return new ResponseEntity<>(optional.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>("데이터가 없습니다.", HttpStatus.NOT_FOUND);
+    }
+
+    // PUT : http://localhost:8081/api/board/2
+    @PutMapping("/board/{id}")
+    public ResponseEntity<?> modify(@PathVariable Long id,
+                                    @RequestBody Board reqBoard){
+        Board updatedBoard = boardService.save(id, reqBoard);
+        //return ResponseEntity.ok(updatedBoard);
+        return new ResponseEntity<>(updatedBoard, HttpStatus.OK);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<String> exceptionHandler(EntityNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 }
