@@ -47,4 +47,11 @@ public class BoardService { // --> new BoardService() : Spring Container(DI, AOP
        }
     }
 
+    // 조회수 증가
+    public void addCount(Long id){
+        Optional<Board> optional=boardRepository.findById(id);
+        Board board=optional.get();
+        board.setCount(board.getCount()+1);
+        boardRepository.save(board); // 수정
+    }
 }
