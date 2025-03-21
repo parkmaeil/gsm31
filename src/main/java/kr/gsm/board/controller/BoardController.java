@@ -24,13 +24,14 @@ public class BoardController { // 객체생성(new BoardController())
 
     //GET :	http://localhost:8081/api/board
     @GetMapping("/board")
-    public List<Board> getAllList(){
-        return boardService.findAll(); // List<Board> ---MessageConveter-> JSON
+    public ResponseEntity<?> getAllList(){
+        return new ResponseEntity<>(boardService.findAll(),HttpStatus.OK); // List<Board> ---MessageConveter-> JSON
     }
+
     //POST : http://localhost:8081/api/board
     @PostMapping("/board") // JSON : { "title":"자바",...  }
-    public Board register(@RequestBody Board board){
-       return boardService.save(board);
+    public ResponseEntity<?> register(@RequestBody Board board){
+       return new ResponseEntity<>(boardService.save(board), HttpStatus.OK);
     }
 
     // GET : http://localhost:8081/api/board/5
