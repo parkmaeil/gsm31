@@ -65,4 +65,14 @@ public class BoardController { // 객체생성(new BoardController())
     public ResponseEntity<String> exceptionHandler(EntityNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
+    // 책의 title을 받아서 일치하는 책을 보내주는 요청
+    // @GetMapping("/board/{id}")
+    @GetMapping("/board/t/{title}")
+    public ResponseEntity<?> getByTitle(@PathVariable String title){
+        Optional<Board> optional=boardService.findByTitle(title);
+        if(optional.isPresent()){
+            return new ResponseEntity<>(optional.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>("데이터가 없습니다.", HttpStatus.NOT_FOUND);
+    }
 }

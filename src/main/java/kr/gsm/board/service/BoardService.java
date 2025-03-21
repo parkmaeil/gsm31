@@ -54,4 +54,9 @@ public class BoardService { // --> new BoardService() : Spring Container(DI, AOP
         board.setCount(board.getCount()+1);
         boardRepository.save(board); // 수정
     }
+
+    // 책의 제목이 일치하는 책(Board)을 가져오기?
+    public Optional<Board> findByTitle(String title){
+        return boardRepository.findByTitle(title);
+    }
 }
