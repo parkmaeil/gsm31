@@ -22,4 +22,8 @@ public class Book {
     // 책 - 리뷰의 관계(1:1, N:1,1:N, M:N)
     @OneToMany(mappedBy ="book", cascade = CascadeType.ALL)
     private List<Review> reviews;
+
+    // 책 - 구매의 관계
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Cart> carts;
 }
