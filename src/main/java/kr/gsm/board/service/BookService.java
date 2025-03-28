@@ -2,6 +2,8 @@ package kr.gsm.board.service;
 
 import kr.gsm.board.entity.Book;
 import kr.gsm.board.entity.BookDTO;
+import kr.gsm.board.entity.Review;
+import kr.gsm.board.entity.ReviewDTO;
 import kr.gsm.board.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,12 @@ public class BookService {
         // 순환참조문제 해결 ? BookDTO
         List<Book> books=bookRepository.findAll();
         // 리뷰정보 가져오기 ?
-
         return books.stream().map((book)->{
-            return new BookDTO(book.getId(),book.getTitle(),book.getPrice(),book.getAuthor(),book.getPage(),null);
+            //List<Review> reviews=book.getReviews();//EntityManager를 접근
+            List<ReviewDTO> reviewDTOS=book.getReviews().stream().map((review)->{
+               return new ReviewDTO(review.getId(), review.getCost(), review.getContent(), review.getCreatedAt());
+            }).toList();
+            return new BookDTO(book.getId(),book.getTitle(),book.getPrice(),book.getAuthor(),book.getPage(),reviewDTOS);
         }).toList(); //-------->SQL
     }
 }

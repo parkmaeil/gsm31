@@ -6,21 +6,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookDTO {
+public class ReviewDTO {
 
     private Long id;
-    private String title;
-    private int price;
-    private String author;
-    private int page;
-    //private LocalDateTime createdAt;
-    // 리뷰 ?
-    private List<ReviewDTO> reviews;
+    private int cost;
+    private String content;
+    private LocalDateTime createdAt;
 
 }
