@@ -1,6 +1,7 @@
 package kr.gsm.board.controller;
 
 import kr.gsm.board.entity.Book;
+import kr.gsm.board.entity.BookDTO;
 import kr.gsm.board.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,11 +20,12 @@ public class BookController {
 
     // GET : /bapi/books
     @GetMapping("/books")
-    public List<Book> getAllLists(){
-        List<Book> books=bookService.getAllLists();
+    public List<BookDTO> getAllLists(){
+        List<BookDTO> books=bookService.getAllLists();
         return books;
-        //  List<Book> ---HttpMessageConverter----> JSON
-        //                  @Entity 해석(연관관계?)
+        //  List<BookDTO> ---HttpMessageConverter----> JSON
+        //                   @Entity 해석(연관관계?)
+        // 1. 순환참조문제 ? DTO 클래스를 만들어서 해결
         //  [
         //    {id, title, price, author, page,[],[]},
         //    {id, title, price, author, page,[],[]},
