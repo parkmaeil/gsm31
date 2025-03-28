@@ -20,10 +20,16 @@ public class Customer { // 고객(1)-리뷰(N) / 고객(1)-구매(N)
     private String name;
     private int age;
     // 고객-리뷰의 관계
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,
+               fetch = FetchType.LAZY)
     private List<Review> reviews;
 
     // 고객-구매의 관계
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,
+               fetch = FetchType.LAZY)
     private List<Cart> carts;
 }
+/*
+   N+1 문제 ? - fetch join
+   순환참조문제 ? - Entity -> DTO
+ */

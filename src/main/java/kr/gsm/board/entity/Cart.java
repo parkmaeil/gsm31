@@ -21,12 +21,12 @@ public class Cart { // 장바구니(구매)
         this.cartDate=LocalDateTime.now();
     }
     // 구매(N) - 고객(1) 관계
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     // 구매(N) - 책(1) 관계
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 }

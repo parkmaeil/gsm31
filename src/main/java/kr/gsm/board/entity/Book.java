@@ -20,10 +20,12 @@ public class Book {
     private String author;
     private int page;
     // 책 - 리뷰의 관계(1:1, N:1,1:N, M:N)
-    @OneToMany(mappedBy ="book", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy ="book", cascade = CascadeType.ALL,
+               fetch = FetchType.LAZY)
     private List<Review> reviews;
 
     // 책 - 구매의 관계
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL,
+               fetch = FetchType.LAZY)
     private List<Cart> carts;
 }
