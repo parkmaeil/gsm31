@@ -22,12 +22,12 @@ public class Review { // 리뷰 - 책
         this.createdAt=LocalDateTime.now();
     }
     // 리뷰-책 관계(1:1, 1:N,N:1, M:N)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id", nullable = false)
     private Book book; // Book의 id를 가리키는 키(FK)
 
     // 리뷰-고객 관계
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;// Customer의 id를 가리키는 키(FK)
 }
