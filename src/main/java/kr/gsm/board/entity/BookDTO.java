@@ -22,5 +22,4 @@ public class BookDTO {
     //private LocalDateTime createdAt;
     // 리뷰 ?
     private List<ReviewDTO> reviews;
-
 }
