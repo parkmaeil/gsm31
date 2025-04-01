@@ -17,5 +17,5 @@ public class ReviewDTO {
     private int cost;
     private String content;
     private LocalDateTime createdAt;
-
+    private CustomerDTO customer; // 추가
 }
