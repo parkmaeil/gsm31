@@ -23,7 +23,7 @@ public class BookService {
     @Transactional(readOnly = true)
     public List<BookDTO> getAllLists(){
         // 순환참조문제 해결 ? BookDTO
-        List<Book> books=bookRepository.findAll(); // 1번SQL
+        List<Book> books=bookRepository.findWithReviews(); // 1번SQL
         // 리뷰정보 가져오기 ?
         return books.stream().map((book)->{
             //List<Review> reviews=book.getReviews();//EntityManager를 접근
