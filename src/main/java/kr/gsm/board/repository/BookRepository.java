@@ -15,7 +15,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("select DISTINCT b from Book b left join fetch b.reviews")
     public List<Book> findWithReviews();
 
-    @EntityGraph(attributePaths = {"reviews"})
+    @EntityGraph(attributePaths = {"reviews","reviews.customer"})
     @Override
     public List<Book> findAll();
 
