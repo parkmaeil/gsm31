@@ -14,6 +14,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
            SELECT DISTINCT c FROM Customer c
            LEFT JOIN FETCH c.carts ct
            LEFT JOIN FETCH ct.book
+           where c.username=:username
            """)
-    public List<Customer> findAllWithCartsAndBooks();
+    public List<Customer> findAllWithCartsAndBooks(String username);
 }

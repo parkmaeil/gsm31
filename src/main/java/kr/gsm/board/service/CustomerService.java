@@ -17,8 +17,8 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
     @Transactional(readOnly = true)
-    public List<CustomerCartsDTO> getCartsList(){
-        List<Customer> customers=customerRepository.findAllWithCartsAndBooks(); // 1번SQL
+    public List<CustomerCartsDTO> getCartsList(String username){
+        List<Customer> customers=customerRepository.findAllWithCartsAndBooks(username); // 1번SQL
         // 리뷰정보 가져오기 ?
         return customers.stream().map((customer)->{
             //List<Review> reviews=book.getReviews();//EntityManager를 접근
