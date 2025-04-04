@@ -1,9 +1,11 @@
 package kr.gsm.board.service;
 
 import kr.gsm.board.entity.*;
+import kr.gsm.board.payload.BookDTO;
+import kr.gsm.board.payload.CustomerDTO;
+import kr.gsm.board.payload.ReviewDTO;
 import kr.gsm.board.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

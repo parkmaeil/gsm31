@@ -30,3 +30,13 @@ INSERT INTO cart (quantity, cartdate, customer_id, book_id) VALUES
 (2, DATE_SUB(NOW(), INTERVAL 2 DAY), 3, 1),  -- 유관순 → 자바의 정석
 (1, DATE_SUB(NOW(), INTERVAL 1 DAY), 4, 2),  -- 장보고 → 스프링 입문
 (2, NOW(),                      5, 4);  -- 안중근 → React 제대로 배우기
+
+-- Q. user1 고객이 어떤 책을 언제, 몇 권 샀는지를 조회할 수 있는 SQL
+
+    select c.username, ct.quantity, ct.cartDate, b.title
+    from customer c
+    left join cart ct
+    on c.id=ct.customer_id
+    left join book b
+    on ct.book_id=b.id
+    where c.username='user1';

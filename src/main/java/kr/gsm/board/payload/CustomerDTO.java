@@ -1,4 +1,4 @@
-package kr.gsm.board.entity;
+package kr.gsm.board.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,4 +13,5 @@ public class CustomerDTO {
     // username, name;
     private String username;
     private String name;
+
 }

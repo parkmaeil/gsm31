@@ -1,10 +1,8 @@
 package kr.gsm.board.controller;
 
-import kr.gsm.board.entity.Book;
-import kr.gsm.board.entity.BookDTO;
+import kr.gsm.board.payload.BookDTO;
 import kr.gsm.board.service.BookService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
