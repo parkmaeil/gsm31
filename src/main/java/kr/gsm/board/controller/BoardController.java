@@ -17,6 +17,7 @@ import java.util.Optional;
 //@Controller  // View를 넘겨주는
 @RestController // JSON
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BoardController { // 객체생성(new BoardController())
 
     @Autowired
